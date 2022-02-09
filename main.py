@@ -1,7 +1,24 @@
 file = open(r"Lesson plan.txt")
 import datetime
 from time import sleep
+from plyer import notification
+
+#Tkinker
+
+
+
+
+
+def notifyMe(title, message):
+    notification.notify(
+        title = title,
+        message = message,
+        app_icon = "Ampeross-Qetto-2-Timer.ico",
+        timeout = 10,
+    )
+
 for i in file:
+
 
     line_list = i.split()
 
@@ -24,7 +41,12 @@ while True:
     day = now.strftime("%A")
     day = day.upper()
     print(now, day)
+
     time = now.strftime("%H.%M")
+    minutes = time[-2:]
+    hours = time[:2]
+    minutes = str(int(minutes)+1)
+    time = hours + "." + minutes
     print(time)
 
 
@@ -35,18 +57,27 @@ while True:
             case "MONDAY":
                 index_of_alarm = lesson_alarm.index(time)
                 print(list_of_monday[index_of_alarm])
+                notifyMe(f"ROZPOCZĘŁA SIĘ{(list_of_monday[index_of_alarm])} ", "Dołącz na lekcję jak najszybciej")
             case "TUESDAY":
-                index_of_alarm = lesson_alarm.index(time)
+                (index_of_alarm)= lesson_alarm.index(time)
                 print(list_of_tuesday[index_of_alarm])
+                notifyMe(f"ROZPOCZĘŁA SIĘ {(list_of_tuesday[index_of_alarm])} ", "Dołącz na lekcję jak najszybciej!")
             case "WEDNESDAY":
                 index_of_alarm = lesson_alarm.index(time)
                 print(list_of_wednesday[index_of_alarm])
+                print(list_of_tuesday[index_of_alarm])
+                notifyMe(f"ROZPOCZĘŁA SIĘ {(list_of_wednesday[index_of_alarm])} ", "Dołącz na lekcję jak najszybciej!")
             case "THURSDAY":
                 index_of_alarm = lesson_alarm.index(time)
                 print(list_of_thursday[index_of_alarm])
+                print(list_of_tuesday[index_of_alarm])
+                notifyMe(f"ROZPOCZĘŁA SIĘ {(list_of_thursday[index_of_alarm])} ", "Dołącz na lekcję jak najszybciej!")
             case "FRIDAY":
                 index_of_alarm = lesson_alarm.index(time)
                 print(list_of_friday[index_of_alarm])
+                print(list_of_tuesday[index_of_alarm])
+                notifyMe(f"ROZPOCZĘŁA SIĘ {(list_of_friday[index_of_alarm])} ", "Dołącz na lekcję jak najszybciej!")
+
         sleep(60)
 
 print(list)
