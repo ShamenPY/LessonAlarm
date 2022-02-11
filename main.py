@@ -1,12 +1,16 @@
-file = open(r"Lesson plan.txt")
 import datetime
 from time import sleep
 from plyer import notification
 from tkinter import *
 import tkinter as tk
-#import tkinter as tk
-from tkinter import messagebox
-#Tkinker
+
+def notifyMe(title, message):
+    notification.notify(
+        title = title,
+        message = message,
+        app_icon = "Ampeross-Qetto-2-Timer.ico",
+        timeout = 10,
+    )
 
 
 root = tk.Tk()
@@ -27,7 +31,7 @@ l3=tk.Label(root,text="Thursday", bg="#d4d4d4")
 l3.grid(row=5,column=1)
 l3=tk.Label(root,text="Friday", bg="#d4d4d4")
 l3.grid(row=6,column=1)
-l3=tk.Label(root,text="wyprzedzenie", bg="#d4d4d4")
+l3=tk.Label(root,text="wyprzedzenie: ", bg="#d4d4d4")
 l3.grid(row=7,column=1)
 
 alarm1_StringVar = StringVar()
@@ -82,9 +86,6 @@ friday8_StringVar = StringVar()
 wyprzedzenie_StringVar = StringVar()
 
 
-
-
-
 alarm1 = Entry(root,width=5,textvariable=alarm1_StringVar).grid(row=1,column=2),
 alarm2 = Entry(root, width=5,textvariable=alarm2_StringVar).grid(row=1,column=3),
 alarm3 = Entry(root, width=5,textvariable=alarm3_StringVar).grid(row=1,column=4),
@@ -135,7 +136,7 @@ friday5 = Entry(root, width=5,textvariable=friday5_StringVar).grid(row=6,column=
 friday6 = Entry(root, width=5,textvariable=friday6_StringVar).grid(row=6,column=7),
 friday7 = Entry(root, width=5,textvariable=friday7_StringVar).grid(row=6,column=8),
 friday8 = Entry(root, width=5,textvariable=friday8_StringVar).grid(row=6,column=9),
-wyprzedzenie = Entry(root, width=5,textvariable=wyprzedzenie_StringVar).grid(row=7,column=2),
+wyprzedzenie = Entry(root, width=5,textvariable=wyprzedzenie_StringVar).grid(row=7,column=2)
 
 def submit():
     global alarm1_text,alarm2_text,alarm3_text,alarm4_text,alarm5_text,alarm6_text,alarm7_text,alarm8_text
@@ -143,7 +144,8 @@ def submit():
     global tuesday1_text,tuesday2_text,tuesday3_text,tuesday4_text,tuesday5_text,tuesday6_text,tuesday7_text,tuesday8_text
     global wednesday1_text, wednesday2_text, wednesday3_text, wednesday4_text, wednesday5_text, wednesday6_text, wednesday7_text, wednesday8_text
     global thursday1_text,thursday2_text,thursday3_text,thursday4_text,thursday5_text,thursday6_text,thursday7_text,thursday8_text
-    global friday1_text,friday2_text,friday3_text,friday4_text,friday5_text,friday6_text,friday7_text,friday8_text,wyprzedzenie
+    global friday1_text,friday2_text,friday3_text,friday4_text,friday5_text,friday6_text,friday7_text,friday8_text, wyprzedzenie, wyprzedzenie_text
+
     alarm1_text = alarm1_StringVar.get()
     print(alarm1_text)
     alarm2_text = alarm2_StringVar.get()
@@ -241,35 +243,26 @@ def submit():
     friday8_text = friday8_StringVar.get()
     print(friday8_text)
     wyprzedzenie_text = wyprzedzenie_StringVar.get()
-    print(wyprzedzenie)
-
-
-
-
-
-
-
-
-
-
+    print(wyprzedzenie_text)
 
 submitButton = Button(root, text="Zapisz", command=submit).grid(row=8,column=1)
 
 root.mainloop()
 
-
-def notifyMe(title, message):
-    notification.notify(
-        title = title,
-        message = message,
-        app_icon = "Ampeross-Qetto-2-Timer.ico",
-        timeout = 10,
-    )
-
+file = open("Lesson plan.txt", "w")
+if file.writable():
+    file.write("lesson alarm" + "\t" + alarm1_text + "\t" + alarm2_text + "\t" + alarm3_text + "\t" + alarm4_text + "\t" + alarm5_text + "\t" + alarm6_text + "\t" + alarm7_text + "\t" + alarm8_text + "\n")
+    file.write("monday" + "\t" + monday1_text + "\t" + monday2_text + "\t" + monday3_text + "\t" + monday4_text + "\t" + monday5_text + "\t" + monday6_text + "\t" + monday7_text + "\t" + monday8_text + "\n")
+    file.write("tuesday" + "\t" + tuesday1_text + "\t" + tuesday2_text + "\t" + tuesday3_text + "\t" + tuesday4_text + "\t" + tuesday5_text + "\t" + tuesday6_text + "\t" + tuesday7_text + "\t" + tuesday8_text + "\n")
+    file.write("wednesday" + "\t" + wednesday1_text + "\t" + wednesday2_text + "\t" + wednesday3_text + "\t" + wednesday4_text + "\t" + wednesday5_text + "\t" + wednesday6_text + "\t" + wednesday7_text + "\t" + wednesday8_text + "\n")
+    file.write("thursday" + "\t" + thursday1_text + "\t" + thursday2_text + "\t" + thursday3_text + "\t" + thursday4_text + "\t" + thursday5_text + "\t" + thursday6_text + "\t" + thursday7_text + "\t" + thursday8_text + "\n")
+    file.write("friday" + "\t" + friday1_text + "\t" + friday2_text + "\t" + friday3_text + "\t" + friday4_text + "\t" + friday5_text + "\t" + friday6_text + "\t" + friday7_text + "\t" + friday8_text + "\n")
+file.close()
+file = open("Lesson plan.txt", "r")
 for i in file:
 
 
-    line_list = i.split()
+    line_list = i.split("\t")
 
     if line_list[0] == "Monday":
         list_of_monday = line_list[1:]
@@ -294,8 +287,8 @@ while True:
     time = now.strftime("%H.%M")
     minutes = time[-2:]
     hours = time[:2]
-    minutes = str(int(minutes)+1)
-    time = hours + "." + minutes
+    minutes = str(int(minutes) + int(wyprzedzenie_text))
+    time = str(hours) + "." + minutes
     print(time)
 
 
