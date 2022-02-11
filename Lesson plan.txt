@@ -1,6 +1,6 @@
-lesson alarm								
-monday								
-tuesday								
-wednesday								
-thursday								
-friday								
+lesson_alarm;08.02;;;;;;;
+Monday;;;;;;;;
+Tuesday;;;;;;;;
+Wednesday;;;;;;;;
+Thursday;;;;;;;;
+Friday;a;;;;;;;

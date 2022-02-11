@@ -12,6 +12,7 @@ def notifyMe(title, message):
         timeout = 10,
     )
 
+lesson_alarm = 0
 
 root = tk.Tk()
 root.title("CONFIG - Lesson Alarm")
@@ -83,7 +84,7 @@ friday5_StringVar = StringVar()
 friday6_StringVar = StringVar()
 friday7_StringVar = StringVar()
 friday8_StringVar = StringVar()
-wyprzedzenie_StringVar = StringVar()
+time_to_lesson_StringVar = StringVar()
 
 
 alarm1 = Entry(root,width=5,textvariable=alarm1_StringVar).grid(row=1,column=2),
@@ -136,15 +137,15 @@ friday5 = Entry(root, width=5,textvariable=friday5_StringVar).grid(row=6,column=
 friday6 = Entry(root, width=5,textvariable=friday6_StringVar).grid(row=6,column=7),
 friday7 = Entry(root, width=5,textvariable=friday7_StringVar).grid(row=6,column=8),
 friday8 = Entry(root, width=5,textvariable=friday8_StringVar).grid(row=6,column=9),
-wyprzedzenie = Entry(root, width=5,textvariable=wyprzedzenie_StringVar).grid(row=7,column=2)
+time_to_lesson = Entry(root, width=5,textvariable=time_to_lesson_StringVar).grid(row=7,column=2)
 
 def submit():
-    global alarm1_text,alarm2_text,alarm3_text,alarm4_text,alarm5_text,alarm6_text,alarm7_text,alarm8_text
+    global alarm1_text,alarm2_text,alarm3_text,alarm4_text,alarm5_text,alarm6_text,alarm7_text,alarm8_text, dzwonki
     global monday1_text,monday2_text,monday3_text,monday4_text,monday5_text,monday6_text,monday7_text,monday8_text
     global tuesday1_text,tuesday2_text,tuesday3_text,tuesday4_text,tuesday5_text,tuesday6_text,tuesday7_text,tuesday8_text
     global wednesday1_text, wednesday2_text, wednesday3_text, wednesday4_text, wednesday5_text, wednesday6_text, wednesday7_text, wednesday8_text
     global thursday1_text,thursday2_text,thursday3_text,thursday4_text,thursday5_text,thursday6_text,thursday7_text,thursday8_text
-    global friday1_text,friday2_text,friday3_text,friday4_text,friday5_text,friday6_text,friday7_text,friday8_text, wyprzedzenie, wyprzedzenie_text
+    global friday1_text,friday2_text,friday3_text,friday4_text,friday5_text,friday6_text,friday7_text,friday8_text, time_to_lesson_text
 
     alarm1_text = alarm1_StringVar.get()
     print(alarm1_text)
@@ -242,8 +243,8 @@ def submit():
     print(friday7_text)
     friday8_text = friday8_StringVar.get()
     print(friday8_text)
-    wyprzedzenie_text = wyprzedzenie_StringVar.get()
-    print(wyprzedzenie_text)
+    time_to_lesson_text = time_to_lesson_StringVar.get()
+    print(time_to_lesson_text)
 
 submitButton = Button(root, text="Zapisz", command=submit).grid(row=8,column=1)
 
@@ -251,18 +252,18 @@ root.mainloop()
 
 file = open("Lesson plan.txt", "w")
 if file.writable():
-    file.write("lesson alarm" + "\t" + alarm1_text + "\t" + alarm2_text + "\t" + alarm3_text + "\t" + alarm4_text + "\t" + alarm5_text + "\t" + alarm6_text + "\t" + alarm7_text + "\t" + alarm8_text + "\n")
-    file.write("monday" + "\t" + monday1_text + "\t" + monday2_text + "\t" + monday3_text + "\t" + monday4_text + "\t" + monday5_text + "\t" + monday6_text + "\t" + monday7_text + "\t" + monday8_text + "\n")
-    file.write("tuesday" + "\t" + tuesday1_text + "\t" + tuesday2_text + "\t" + tuesday3_text + "\t" + tuesday4_text + "\t" + tuesday5_text + "\t" + tuesday6_text + "\t" + tuesday7_text + "\t" + tuesday8_text + "\n")
-    file.write("wednesday" + "\t" + wednesday1_text + "\t" + wednesday2_text + "\t" + wednesday3_text + "\t" + wednesday4_text + "\t" + wednesday5_text + "\t" + wednesday6_text + "\t" + wednesday7_text + "\t" + wednesday8_text + "\n")
-    file.write("thursday" + "\t" + thursday1_text + "\t" + thursday2_text + "\t" + thursday3_text + "\t" + thursday4_text + "\t" + thursday5_text + "\t" + thursday6_text + "\t" + thursday7_text + "\t" + thursday8_text + "\n")
-    file.write("friday" + "\t" + friday1_text + "\t" + friday2_text + "\t" + friday3_text + "\t" + friday4_text + "\t" + friday5_text + "\t" + friday6_text + "\t" + friday7_text + "\t" + friday8_text + "\n")
+    file.write("lesson_alarm" + ";" + alarm1_text + ";" + alarm2_text + ";" + alarm3_text + ";" + alarm4_text + ";" + alarm5_text + ";" + alarm6_text + ";" + alarm7_text + ";" + alarm8_text + "\n")
+    file.write("Monday" + ";" + monday1_text + ";" + monday2_text + ";" + monday3_text + ";" + monday4_text + ";" + monday5_text + ";" + monday6_text + ";" + monday7_text + ";" + monday8_text + "\n")
+    file.write("Tuesday" + ";" + tuesday1_text + ";" + tuesday2_text + ";" + tuesday3_text + ";" + tuesday4_text + ";" + tuesday5_text + ";" + tuesday6_text + ";" + tuesday7_text + ";" + tuesday8_text + "\n")
+    file.write("Wednesday" + ";" + wednesday1_text + ";" + wednesday2_text + ";" + wednesday3_text + ";" + wednesday4_text + ";" + wednesday5_text + ";" + wednesday6_text + ";" + wednesday7_text + ";" + wednesday8_text + "\n")
+    file.write("Thursday" + ";" + thursday1_text + ";" + thursday2_text + ";" + thursday3_text + ";" + thursday4_text + ";" + thursday5_text + ";" + thursday6_text + ";" + thursday7_text + ";" + thursday8_text + "\n")
+    file.write("Friday" + ";" + friday1_text + ";" + friday2_text + ";" + friday3_text + ";" + friday4_text + ";" + friday5_text + ";" + friday6_text + ";" + friday7_text + ";" + friday8_text)
 file.close()
+
 file = open("Lesson plan.txt", "r")
+
 for i in file:
-
-
-    line_list = i.split("\t")
+    line_list = i.split(";")
 
     if line_list[0] == "Monday":
         list_of_monday = line_list[1:]
@@ -282,14 +283,22 @@ while True:
     now = datetime.datetime.now()
     day = now.strftime("%A")
     day = day.upper()
-    print(now, day)
+
 
     time = now.strftime("%H.%M")
     minutes = time[-2:]
     hours = time[:2]
-    minutes = str(int(minutes) + int(wyprzedzenie_text))
+    minutes = str(int(minutes) + int(time_to_lesson_text))
     time = str(hours) + "." + minutes
-    print(time)
+
+    seconds = int(hours) * 3600 + int(minutes) * 60
+    hours = seconds // 3600
+    seconds = seconds - (hours * 3600)
+
+    minutes = seconds // 60
+    # time = hours + "." + minutes + time_to_lesson_text
+
+    print(hours,".",minutes)
 
 
     if time in lesson_alarm:
@@ -316,12 +325,14 @@ while True:
             case "FRIDAY":
                 index_of_alarm = lesson_alarm.index(time)
                 print(list_of_friday[index_of_alarm])
-                notifyMe(f"ROZPOCZĘŁA SIĘ {(list_of_friday[index_of_alarm])} ", "Dołącz na lekcję jak najszybciej!")
+                notifyMe(f"ROZPOCZELA SIE {(list_of_friday[index_of_alarm])} ", "Dołącz na lekcję jak najszybciej!")
 
-        sleep(60)
 
-print(list)
+sleep(60)
 file.close()
 
-
- 
+# hours = int(minutes) / 60
+#
+# seconds = int(seconds) - int(minutes) * 60
+# seconds = int(minutes)
+# minutes = int(seconds) / 60
