@@ -1,4 +1,3 @@
-#-*- coding: utf-8 -*-
 import datetime
 from time import sleep
 from plyer import notification
@@ -6,11 +5,6 @@ from tkinter import *
 import tkinter as tk
 import pygame
 from pygame import mixer
-# song="C:\\Users\\a\\Desktop\\PycharmProjects\\Lesson-Alarm\\musics\\cs.mp3"
-# mixer.init()
-# mixer.music.load(song)
-# mixer.music.play()
-
 
 def notifyMe(title, message):
     notification.notify(
@@ -20,11 +14,12 @@ def notifyMe(title, message):
         timeout = 10,
     )
 
-lesson_alarm = 0
 
 root = tk.Tk()
 root.title("CONFIG - Lesson Alarm")
 root.geometry("500x300")
+
+
 
 root.configure(background='#d4d4d4')
 root.geometry("400x300")
@@ -42,6 +37,8 @@ l3=tk.Label(root,text="Friday", bg="#d4d4d4")
 l3.grid(row=6,column=1)
 l3=tk.Label(root,text="wyprzedzenie: ", bg="#d4d4d4")
 l3.grid(row=7,column=1)
+l3=tk.Label(root,text="Dzwięk: ", bg="#d4d4d4")
+l3.grid(row=8,column=1)
 
 alarm1_StringVar = StringVar()
 alarm2_StringVar = StringVar()
@@ -93,60 +90,92 @@ friday6_StringVar = StringVar()
 friday7_StringVar = StringVar()
 friday8_StringVar = StringVar()
 time_to_lesson_StringVar = StringVar()
+notice_song_StringVar = StringVar()
 
 
-alarm1 = Entry(root,width=5,textvariable=alarm1_StringVar).grid(row=1,column=2),
-alarm2 = Entry(root, width=5,textvariable=alarm2_StringVar).grid(row=1,column=3),
-alarm3 = Entry(root, width=5,textvariable=alarm3_StringVar).grid(row=1,column=4),
-alarm4 = Entry(root, width=5,textvariable=alarm4_StringVar).grid(row=1,column=5),
-alarm5 = Entry(root, width=5,textvariable=alarm5_StringVar).grid(row=1,column=6),
-alarm6 = Entry(root, width=5,textvariable=alarm6_StringVar).grid(row=1,column=7),
-alarm7 = Entry(root, width=5,textvariable=alarm7_StringVar).grid(row=1,column=8),
-alarm8 = Entry(root, width=5,textvariable=alarm8_StringVar).grid(row=1,column=9),
+alarm1 = Entry(root,width=10,textvariable=alarm1_StringVar).grid(row=1,column=2),
+alarm2 = Entry(root, width=10,textvariable=alarm2_StringVar).grid(row=1,column=3),
+alarm3 = Entry(root, width=10,textvariable=alarm3_StringVar).grid(row=1,column=4),
+alarm4 = Entry(root, width=10,textvariable=alarm4_StringVar).grid(row=1,column=5),
+alarm5 = Entry(root, width=10,textvariable=alarm5_StringVar).grid(row=1,column=6),
+alarm6 = Entry(root, width=10,textvariable=alarm6_StringVar).grid(row=1,column=7),
+alarm7 = Entry(root, width=10,textvariable=alarm7_StringVar).grid(row=1,column=8),
+alarm8 = Entry(root, width=10,textvariable=alarm8_StringVar).grid(row=1,column=9),
 
-monday1 = Entry(root, width=5,textvariable=monday1_StringVar).grid(row=2,column=2),
-monday2 = Entry(root, width=5,textvariable=monday2_StringVar).grid(row=2,column=3),
-monday3 = Entry(root, width=5,textvariable=monday3_StringVar).grid(row=2,column=4),
-monday4 = Entry(root, width=5,textvariable=monday4_StringVar).grid(row=2,column=5),
-monday5 = Entry(root, width=5,textvariable=monday5_StringVar).grid(row=2,column=6),
-monday6 = Entry(root, width=5,textvariable=monday6_StringVar).grid(row=2,column=7),
-monday7 = Entry(root, width=5,textvariable=monday7_StringVar).grid(row=2,column=8),
-monday8 = Entry(root, width=5,textvariable=monday8_StringVar).grid(row=2,column=9),
+monday1 = Entry(root, width=10,textvariable=monday1_StringVar).grid(row=2,column=2),
+monday2 = Entry(root, width=10,textvariable=monday2_StringVar).grid(row=2,column=3),
+monday3 = Entry(root, width=10,textvariable=monday3_StringVar).grid(row=2,column=4),
+monday4 = Entry(root, width=10,textvariable=monday4_StringVar).grid(row=2,column=5),
+monday5 = Entry(root, width=10,textvariable=monday5_StringVar).grid(row=2,column=6),
+monday6 = Entry(root, width=10,textvariable=monday6_StringVar).grid(row=2,column=7),
+monday7 = Entry(root, width=10,textvariable=monday7_StringVar).grid(row=2,column=8),
+monday8 = Entry(root, width=10,textvariable=monday8_StringVar).grid(row=2,column=9),
 
-tuesday1 = Entry(root, width=5,textvariable=tuesday1_StringVar).grid(row=3,column=2),
-tuesday2 = Entry(root, width=5,textvariable=tuesday2_StringVar).grid(row=3,column=3),
-tuesday3 = Entry(root, width=5,textvariable=tuesday3_StringVar).grid(row=3,column=4),
-tuesday4 = Entry(root, width=5,textvariable=tuesday4_StringVar).grid(row=3,column=5),
-tuesday5 = Entry(root, width=5,textvariable=tuesday5_StringVar).grid(row=3,column=6),
-tuesday6 = Entry(root, width=5,textvariable=tuesday6_StringVar).grid(row=3,column=7),
-tuesday7 = Entry(root, width=5,textvariable=tuesday7_StringVar).grid(row=3,column=8),
-tuesday8 = Entry(root, width=5,textvariable=tuesday8_StringVar).grid(row=3,column=9),
-wednesday1 = Entry(root, width=5,textvariable=wednesday1_StringVar).grid(row=4,column=2),
-wednesday2 = Entry(root, width=5,textvariable=wednesday2_StringVar).grid(row=4,column=3),
-wednesday3 = Entry(root, width=5,textvariable=wednesday3_StringVar).grid(row=4,column=4),
-wednesday4 = Entry(root, width=5,textvariable=wednesday4_StringVar).grid(row=4,column=5),
-wednesday5 = Entry(root, width=5,textvariable=wednesday5_StringVar).grid(row=4,column=6),
-wednesday6 = Entry(root, width=5,textvariable=wednesday6_StringVar).grid(row=4,column=7),
-wednesday7 = Entry(root, width=5,textvariable=wednesday7_StringVar).grid(row=4,column=8),
-wednesday8 = Entry(root, width=5,textvariable=wednesday8_StringVar).grid(row=4,column=9),
-thursday1 = Entry(root, width=5,textvariable=thursday1_StringVar).grid(row=5,column=2),
-thursday2 = Entry(root, width=5,textvariable=thursday2_StringVar).grid(row=5,column=3),
-thursday3 = Entry(root, width=5,textvariable=thursday3_StringVar).grid(row=5,column=4),
-thursday4 = Entry(root, width=5,textvariable=thursday4_StringVar).grid(row=5,column=5),
-thursday5 = Entry(root, width=5,textvariable=thursday5_StringVar).grid(row=5,column=6),
-thursday6 = Entry(root, width=5,textvariable=thursday6_StringVar).grid(row=5,column=7),
-thursday7 = Entry(root, width=5,textvariable=thursday7_StringVar).grid(row=5,column=8),
-thursday8 = Entry(root, width=5,textvariable=thursday8_StringVar).grid(row=5,column=9),
-friday1 = Entry(root, width=5,textvariable=friday1_StringVar).grid(row=6,column=2),
-friday2 = Entry(root, width=5,textvariable=friday2_StringVar).grid(row=6,column=3),
-friday3 = Entry(root, width=5,textvariable=friday3_StringVar).grid(row=6,column=4),
-friday4 = Entry(root, width=5,textvariable=friday4_StringVar).grid(row=6,column=5),
-friday5 = Entry(root, width=5,textvariable=friday5_StringVar).grid(row=6,column=6),
-friday6 = Entry(root, width=5,textvariable=friday6_StringVar).grid(row=6,column=7),
-friday7 = Entry(root, width=5,textvariable=friday7_StringVar).grid(row=6,column=8),
-friday8 = Entry(root, width=5,textvariable=friday8_StringVar).grid(row=6,column=9),
-time_to_lesson = Entry(root, width=5,textvariable=time_to_lesson_StringVar).grid(row=7,column=2)
+tuesday1 = Entry(root, width=10,textvariable=tuesday1_StringVar).grid(row=3,column=2),
+tuesday2 = Entry(root, width=10,textvariable=tuesday2_StringVar).grid(row=3,column=3),
+tuesday3 = Entry(root, width=10,textvariable=tuesday3_StringVar).grid(row=3,column=4),
+tuesday4 = Entry(root, width=10,textvariable=tuesday4_StringVar).grid(row=3,column=5),
+tuesday5 = Entry(root, width=10,textvariable=tuesday5_StringVar).grid(row=3,column=6),
+tuesday6 = Entry(root, width=10,textvariable=tuesday6_StringVar).grid(row=3,column=7),
+tuesday7 = Entry(root, width=10,textvariable=tuesday7_StringVar).grid(row=3,column=8),
+tuesday8 = Entry(root, width=10,textvariable=tuesday8_StringVar).grid(row=3,column=9),
+wednesday1 = Entry(root, width=10,textvariable=wednesday1_StringVar).grid(row=4,column=2),
+wednesday2 = Entry(root, width=10,textvariable=wednesday2_StringVar).grid(row=4,column=3),
+wednesday3 = Entry(root, width=10,textvariable=wednesday3_StringVar).grid(row=4,column=4),
+wednesday4 = Entry(root, width=10,textvariable=wednesday4_StringVar).grid(row=4,column=5),
+wednesday5 = Entry(root, width=10,textvariable=wednesday5_StringVar).grid(row=4,column=6),
+wednesday6 = Entry(root, width=10,textvariable=wednesday6_StringVar).grid(row=4,column=7),
+wednesday7 = Entry(root, width=10,textvariable=wednesday7_StringVar).grid(row=4,column=8),
+wednesday8 = Entry(root, width=10,textvariable=wednesday8_StringVar).grid(row=4,column=9),
+thursday1 = Entry(root, width=10,textvariable=thursday1_StringVar).grid(row=5,column=2),
+thursday2 = Entry(root, width=10,textvariable=thursday2_StringVar).grid(row=5,column=3),
+thursday3 = Entry(root, width=10,textvariable=thursday3_StringVar).grid(row=5,column=4),
+thursday4 = Entry(root, width=10,textvariable=thursday4_StringVar).grid(row=5,column=5),
+thursday5 = Entry(root, width=10,textvariable=thursday5_StringVar).grid(row=5,column=6),
+thursday6 = Entry(root, width=10,textvariable=thursday6_StringVar).grid(row=5,column=7),
+thursday7 = Entry(root, width=10,textvariable=thursday7_StringVar).grid(row=5,column=8),
+thursday8 = Entry(root, width=10,textvariable=thursday8_StringVar).grid(row=5,column=9),
+friday1 = Entry(root, width=10,textvariable=friday1_StringVar).grid(row=6,column=2),
+friday2 = Entry(root, width=10,textvariable=friday2_StringVar).grid(row=6,column=3),
+friday3 = Entry(root, width=10,textvariable=friday3_StringVar).grid(row=6,column=4),
+friday4 = Entry(root, width=10,textvariable=friday4_StringVar).grid(row=6,column=5),
+friday5 = Entry(root, width=10,textvariable=friday5_StringVar).grid(row=6,column=6),
+friday6 = Entry(root, width=10,textvariable=friday6_StringVar).grid(row=6,column=7),
+friday7 = Entry(root, width=10,textvariable=friday7_StringVar).grid(row=6,column=8),
+friday8 = Entry(root, width=10,textvariable=friday8_StringVar).grid(row=6,column=9),
+time_to_lesson = Entry(root,width=10, textvariable=time_to_lesson_StringVar).grid(row=7,column=2)
+notice_song = Entry(root,width=10, textvariable=notice_song_StringVar).grid(row=8,column=2)
 
+
+
+def msg1():
+        song = "C:\\Users\\a\\Desktop\\PycharmProjects\\Lesson-Alarm\\musics\\cs.mp3"
+        mixer.init()
+        mixer.music.load(song)
+        mixer.music.play()
+
+def msg2():
+        song = "C:\\Users\\a\\Desktop\\PycharmProjects\\Lesson-Alarm\\musics\\harry.mp3"
+        mixer.init()
+        mixer.music.load(song)
+        mixer.music.play()
+def msg3():
+        song = "C:\\Users\\a\\Desktop\\PycharmProjects\\Lesson-Alarm\\musics\\reteo.mp3"
+        mixer.init()
+        mixer.music.load(song)
+        mixer.music.play()
+
+
+
+
+b_a = Button(root, text="Dzwięk 1",width=10, command=msg1,padx=3)
+b_a.grid(row=9, column=1)
+
+b_b = Button(root, text="Dzwięk 2",width=10, command=msg2,padx=3)
+b_b.grid(row=10, column=1)
+
+b_c = Button(root, text="Dzwięk 3",width=10, command=msg3,padx=3)
+b_c.grid(row=11, column=1)
 
 
 
@@ -156,7 +185,7 @@ def submit():
     global tuesday1_text,tuesday2_text,tuesday3_text,tuesday4_text,tuesday5_text,tuesday6_text,tuesday7_text,tuesday8_text
     global wednesday1_text, wednesday2_text, wednesday3_text, wednesday4_text, wednesday5_text, wednesday6_text, wednesday7_text, wednesday8_text
     global thursday1_text,thursday2_text,thursday3_text,thursday4_text,thursday5_text,thursday6_text,thursday7_text,thursday8_text
-    global friday1_text,friday2_text,friday3_text,friday4_text,friday5_text,friday6_text,friday7_text,friday8_text, time_to_lesson_text
+    global friday1_text,friday2_text,friday3_text,friday4_text,friday5_text,friday6_text,friday7_text,friday8_text, time_to_lesson_text, notice_song_text
 
     alarm1_text = alarm1_StringVar.get()
     print(alarm1_text)
@@ -256,10 +285,22 @@ def submit():
     print(friday8_text)
     time_to_lesson_text = time_to_lesson_StringVar.get()
     print(time_to_lesson_text)
+    notice_song_text = notice_song_StringVar.get()
+    print(notice_song_text)
 
-submitButton = Button(root, text="Zapisz", command=submit).grid(row=8,column=1)
+submitButton = Button(root, text="Zapisz", command=submit,width=10,padx=3).grid(row=12,column=1)
 
 root.mainloop()
+if notice_song_text == "1":
+    song = "C:\\Users\\a\\Desktop\\PycharmProjects\\Lesson-Alarm\\musics\\cs.mp3"
+    mixer.init()
+elif notice_song_text == "2":
+    song = "C:\\Users\\a\\Desktop\\PycharmProjects\\Lesson-Alarm\\musics\\harry.mp3"
+    mixer.init()
+elif notice_song_text == "3":
+    song = "C:\\Users\\a\\Desktop\\PycharmProjects\\Lesson-Alarm\\musics\\reteo.mp3"
+    mixer.init()
+
 
 file = open("Lesson plan.txt", "w")
 if file.writable():
@@ -301,11 +342,8 @@ while True:
     minutes = str(int(minutes) + int(time_to_lesson_text))
     time = str(hours) + "." + minutes
 
-
-
-
     x = int(time_to_lesson_text) * 60
-    seconds = int(hours) * 3600 + int(minutes) * 60 + x
+    seconds = int(hours) * 3600 + int(minutes) * 60# + x
     hours = seconds // 3600
     seconds = seconds - (hours * 3600)
 
@@ -317,7 +355,6 @@ while True:
     time = (str(hours) + "." + str(minutes))
     print(time)
 
-
     if time in lesson_alarm:
         print("Rozpoczela sie lekcja")
 
@@ -326,34 +363,41 @@ while True:
                 index_of_alarm = lesson_alarm.index(time)
                 print(list_of_monday[index_of_alarm])
                 notifyMe(f"ROZPOCZĘŁA SIĘ{(list_of_monday[index_of_alarm])} ", "Dołącz na lekcję jak najszybciej")
+                mixer.music.load(song)
+                mixer.music.play()
                 sleep(60)
+
             case "TUESDAY":
                 (index_of_alarm)= lesson_alarm.index(time)
                 print(list_of_tuesday[index_of_alarm])
                 notifyMe(f"ROZPOCZĘŁA SIĘ {(list_of_tuesday[index_of_alarm])} ", "Dołącz na lekcję jak najszybciej!")
+                mixer.music.load(song)
+                mixer.music.play()
                 sleep(60)
+
             case "WEDNESDAY":
                 index_of_alarm = lesson_alarm.index(time)
                 print(list_of_wednesday[index_of_alarm])
                 notifyMe(f"ROZPOCZĘŁA SIĘ {(list_of_wednesday[index_of_alarm])} ", "Dołącz na lekcję jak najszybciej!")
+                mixer.music.load(song)
+                mixer.music.play()
                 sleep(60)
+
             case "THURSDAY":
                 index_of_alarm = lesson_alarm.index(time)
                 print(list_of_thursday[index_of_alarm])
+                notifyMe(f"ROZPOCZĘŁA SIĘ {(list_of_thursday[index_of_alarm])} ", "Dołącz na lekcję jak najszybciej!")
+                mixer.music.load(song)
+                mixer.music.play()
                 sleep(60)
 
-                notifyMe(f"ROZPOCZĘŁA SIĘ {(list_of_thursday[index_of_alarm])} ", "Dołącz na lekcję jak najszybciej!")
             case "FRIDAY":
                 index_of_alarm = lesson_alarm.index(time)
                 print(list_of_friday[index_of_alarm])
                 notifyMe(f"ROZPOCZELA SIE {(list_of_friday[index_of_alarm])} ", "Dołącz na lekcję jak najszybciej!")
+                mixer.music.load(song)
+                mixer.music.play()
                 sleep(60)
 
 
 file.close()
-
-# hours = int(minutes) / 60
-#
-# seconds = int(seconds) - int(minutes) * 60
-# seconds = int(minutes)
-# minutes = int(seconds) / 60

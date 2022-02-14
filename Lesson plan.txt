@@ -1,0 +1,6 @@
+lesson_alarm;das;;;;;;;
+Monday;sda;;;;;;;
+Tuesday;;;;;;;;
+Wednesday;;;;;;;;
+Thursday;;;;;;;;
+Friday;;;;;;;;
