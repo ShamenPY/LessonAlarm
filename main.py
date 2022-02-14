@@ -1,8 +1,16 @@
+#-*- coding: utf-8 -*-
 import datetime
 from time import sleep
 from plyer import notification
 from tkinter import *
 import tkinter as tk
+import pygame
+from pygame import mixer
+# song="C:\\Users\\a\\Desktop\\PycharmProjects\\Lesson-Alarm\\musics\\cs.mp3"
+# mixer.init()
+# mixer.music.load(song)
+# mixer.music.play()
+
 
 def notifyMe(title, message):
     notification.notify(
@@ -138,6 +146,9 @@ friday6 = Entry(root, width=5,textvariable=friday6_StringVar).grid(row=6,column=
 friday7 = Entry(root, width=5,textvariable=friday7_StringVar).grid(row=6,column=8),
 friday8 = Entry(root, width=5,textvariable=friday8_StringVar).grid(row=6,column=9),
 time_to_lesson = Entry(root, width=5,textvariable=time_to_lesson_StringVar).grid(row=7,column=2)
+
+
+
 
 def submit():
     global alarm1_text,alarm2_text,alarm3_text,alarm4_text,alarm5_text,alarm6_text,alarm7_text,alarm8_text, dzwonki
@@ -284,21 +295,27 @@ while True:
     day = now.strftime("%A")
     day = day.upper()
 
-
     time = now.strftime("%H.%M")
     minutes = time[-2:]
     hours = time[:2]
     minutes = str(int(minutes) + int(time_to_lesson_text))
     time = str(hours) + "." + minutes
 
-    seconds = int(hours) * 3600 + int(minutes) * 60
+
+
+
+    x = int(time_to_lesson_text) * 60
+    seconds = int(hours) * 3600 + int(minutes) * 60 + x
     hours = seconds // 3600
     seconds = seconds - (hours * 3600)
 
     minutes = seconds // 60
-    # time = hours + "." + minutes + time_to_lesson_text
 
-    print(hours,".",minutes)
+    if minutes < 10:
+        minutes = "0" + str(minutes)
+
+    time = (str(hours) + "." + str(minutes))
+    print(time)
 
 
     if time in lesson_alarm:
@@ -309,26 +326,30 @@ while True:
                 index_of_alarm = lesson_alarm.index(time)
                 print(list_of_monday[index_of_alarm])
                 notifyMe(f"ROZPOCZĘŁA SIĘ{(list_of_monday[index_of_alarm])} ", "Dołącz na lekcję jak najszybciej")
+                sleep(60)
             case "TUESDAY":
                 (index_of_alarm)= lesson_alarm.index(time)
                 print(list_of_tuesday[index_of_alarm])
                 notifyMe(f"ROZPOCZĘŁA SIĘ {(list_of_tuesday[index_of_alarm])} ", "Dołącz na lekcję jak najszybciej!")
+                sleep(60)
             case "WEDNESDAY":
                 index_of_alarm = lesson_alarm.index(time)
                 print(list_of_wednesday[index_of_alarm])
                 notifyMe(f"ROZPOCZĘŁA SIĘ {(list_of_wednesday[index_of_alarm])} ", "Dołącz na lekcję jak najszybciej!")
+                sleep(60)
             case "THURSDAY":
                 index_of_alarm = lesson_alarm.index(time)
                 print(list_of_thursday[index_of_alarm])
+                sleep(60)
 
                 notifyMe(f"ROZPOCZĘŁA SIĘ {(list_of_thursday[index_of_alarm])} ", "Dołącz na lekcję jak najszybciej!")
             case "FRIDAY":
                 index_of_alarm = lesson_alarm.index(time)
                 print(list_of_friday[index_of_alarm])
                 notifyMe(f"ROZPOCZELA SIE {(list_of_friday[index_of_alarm])} ", "Dołącz na lekcję jak najszybciej!")
+                sleep(60)
 
 
-sleep(60)
 file.close()
 
 # hours = int(minutes) / 60
