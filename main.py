@@ -1,3 +1,4 @@
+
 import datetime
 from time import sleep
 from plyer import notification
@@ -343,7 +344,7 @@ while True:
     time = str(hours) + "." + minutes
 
     x = int(time_to_lesson_text) * 60
-    seconds = int(hours) * 3600 + int(minutes) * 60# + x
+    seconds = int(hours) * 3600 + int(minutes) * 60
     hours = seconds // 3600
     seconds = seconds - (hours * 3600)
 
@@ -351,6 +352,8 @@ while True:
 
     if minutes < 10:
         minutes = "0" + str(minutes)
+    if hours < 10:
+        hours = "0" + str(hours)
 
     time = (str(hours) + "." + str(minutes))
     print(time)
